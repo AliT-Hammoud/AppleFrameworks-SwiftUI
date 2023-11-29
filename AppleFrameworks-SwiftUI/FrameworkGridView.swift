@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct FrameworkGridView: View {
-    
-//    MARK: when initializing the viewModel we use stateobject while injection we use @observedObject
-//    @StateObject will hold the state of the object while the view is distroyed and recreated again,
-    @StateObject var viewModel = FrameworkGridViewModel()
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible()),
                                GridItem(.flexible())]
@@ -23,18 +19,10 @@ struct FrameworkGridView: View {
                 LazyVGrid(columns: self.columns) {
                     ForEach(MockData.frameworks) { frameWork in
                         FrameworkTitleView(framework: frameWork)
-                            .onTapGesture {
-                                viewModel.selectedFramework = frameWork
-                            }
                     }
                 }
             }
             .navigationTitle("🍎 Frameworks")
-            .sheet(isPresented: $viewModel.isShowingDetailedView) {
-                FrameworkDetailedView(
-                    framework: viewModel.selectedFramework ?? MockData.sampleFramework,
-                    isShowingDetailView: $viewModel.isShowingDetailedView)
-            }
         }
     }
 }

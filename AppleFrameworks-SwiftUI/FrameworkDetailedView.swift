@@ -10,15 +10,13 @@ import SwiftUI
 struct FrameworkDetailedView: View {
     
     var framework: Framework
-//    MARK: @binding make isShowingDetailView equal what is the same in the parent view
-    @Binding var isShowingDetailView: Bool
     
     var body: some View {
         VStack {
             HStack{
                 Spacer()
                 Button {
-                    isShowingDetailView = false
+                    print("Close button")
                 } label: {
                     Image(systemName: "xmark")
                         .foregroundColor(Color(.label))
@@ -45,7 +43,7 @@ struct FrameworkDetailedView: View {
 
 struct FrameworkDetailedView_Previews: PreviewProvider {
     static var previews: some View {
-        FrameworkDetailedView(framework: MockData.sampleFramework, isShowingDetailView: .constant(false))
+        FrameworkDetailedView(framework: MockData.sampleFramework)
         
     }
 }
